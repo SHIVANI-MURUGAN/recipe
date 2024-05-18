@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="recipeApp">
+<head>
+    <title>Recipe Collection System</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular-animate.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="RecipeController">
+    <h1>Recipe Collection System</h1>
+    <p><b>Cook Your Favourite receipe</b></p>
+    <label for="filter">Filter by category:</label>
+    <input type="text" id="filter" ng-model="searchFilter" placeholder="Search for category">
+
+    <div class="categories">
+        <button ng-click="setCategory('Soups')">Soups</button>
+        <button ng-click="setCategory('Salads')">Salads</button>
+        <button ng-click="setCategory('Cakes')">Cakes</button>
+        <button ng-click="setCategory('Variety Rice')">Variety Rice</button>
+        <button ng-click="setCategory('All')">All</button>
+    </div>
+
+    <ul>
+        <li ng-repeat="recipe in recipes | filter:searchFilter | filter:categoryFilter" class="remove-item" recipe-details="{{ recipe.ingredients }}">
+            <h2>{{ recipe.name }}</h2>
+            <p>{{ recipe.ingredients }}</p>
+            <button ng-click="deleteRecipe(recipe)">Delete</button>
+        </li>
+    </ul>
+    
+    <p>Click <a href="index.html">here</a> to browse recipes and shop!</p>
+</body>
+</html>
